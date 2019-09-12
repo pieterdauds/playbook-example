@@ -1,0 +1,11 @@
+---
+- hosts: servers
+  tasks:
+    - name: Create file on server
+      file: path=/tmp/helloworld state=touch mode=777
+    
+    - name: Add Content
+      shell: echo berhasil;echo $(hostname)  > /tmp/helloworld
+      register: addcontent
+ 
+    - debug: msg="The echo was {{ addcontent.stdout  }}"
